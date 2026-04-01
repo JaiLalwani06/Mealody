@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Mealody</title>
+  <meta name="description" content="Learn about the team behind Mealody and why we built a meal planning app for real life." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar" role="banner">
+    <div class="container navbar__inner">
+      <a href="index.html" class="navbar__logo" aria-label="Mealody home">
+        <svg width="32" height="40" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <ellipse cx="16" cy="8" rx="8" ry="7" fill="#C4714A"/>
+          <rect x="14.5" y="14" width="3" height="18" rx="1.5" fill="#C4714A"/>
+          <path d="M16 32 Q8 36 10 39 Q14 42 18 38" stroke="#C4714A" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <circle cx="10" cy="39" r="2.5" fill="#C4714A"/>
+        </svg>
+        <span class="navbar__logo-text">Mealody</span>
+      </a>
+      <button class="navbar__toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="navbar__nav" aria-label="Main navigation">
+        <a href="index.html" class="navbar__link" data-page="index.html">Home</a>
+        <a href="about.html" class="navbar__link" data-page="about.html">About</a>
+        <a href="how-it-works.html" class="navbar__link" data-page="how-it-works.html">How It Works</a>
+        <a href="contact.html" class="navbar__link" data-page="contact.html">Contact</a>
+        <div class="navbar__cta">
+          <a href="index.html#waitlist" class="btn btn-primary btn-sm">Try Free</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== PAGE HEADER ===== -->
+    <section class="page-header" aria-label="About Mealody">
+      <div class="container">
+        <h1 class="fade-up">Built for real life.</h1>
+        <p class="fade-up" data-delay="1">
+          We built Mealody because eating well shouldn't require a nutrition degree, hours of planning, or a chef's budget.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== PITCH VIDEO ===== -->
+    <section class="pitch-video section-pad" aria-label="Pitch video">
+      <div class="container">
+        <h2 class="fade-up" style="text-align:center;">Meet Mealody</h2>
+        <p class="pitch-video__sub fade-up" data-delay="1" style="text-align:center;">Hear directly from the founder in 30 seconds.</p>
+        <div class="video-embed-wrapper fade-up" data-delay="2">
+          <iframe
+            src="https://psu.mediaspace.kaltura.com/embed/secure/iframe/entryId/1_qp0zafeh"
+            width="100%"
+            height="100%"
+            allowfullscreen
+            webkitallowfullscreen
+            mozallowfullscreen
+            allow="autoplay *; fullscreen *; encrypted-media *"
+            frameborder="0"
+            title="Mealody Pitch Video"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOUNDER SECTION ===== -->
+    <section class="founder-section section-pad" aria-label="Founder story">
+      <div class="container">
+        <div class="founder__grid">
+
+          <!-- Photo -->
+          <div class="founder__photos fade-up">
+            <img
+              src="images/founder.jpeg"
+              alt="Jai Lalwani, Founder of Mealody"
+              class="founder__photo-main"
+            />
+          </div>
+
+          <!-- Text -->
+          <div class="fade-up" data-delay="2">
+            <h2 style="font-size:clamp(1.6rem,3.5vw,2.3rem); margin-bottom:18px;">
+              From a frustrated student<br/>to a better way to eat.
+            </h2>
+            <blockquote class="founder__quote">
+              "Hi, I'm Jai, a Penn State student who got tired of eating the same three meals every week.
+              I built Mealody because I wanted something that would just tell me what to eat —
+              without requiring me to become a nutritionist or a chef.
+              If you've ever stared into your fridge and had no idea what to make,
+              this app is for you."
+              <br/><br/>
+              — Jai Lalwani
+            </blockquote>
+            <div style="margin-top:28px;">
+              <p class="founder__name">Jai Lalwani</p>
+              <p class="founder__title">Founder &amp; Builder, Mealody</p>
+            </div>
+
+            <!-- Small value props under quote -->
+            <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:32px;">
+              <span style="background:rgba(122,158,126,0.12); color:#4a7a4e; font-size:0.82rem; font-weight:700; padding:6px 14px; border-radius:50px; letter-spacing:0.05em;">🎓 Student-built</span>
+              <span style="background:rgba(196,113,74,0.1); color:#c4714a; font-size:0.82rem; font-weight:700; padding:6px 14px; border-radius:50px; letter-spacing:0.05em;">❤️ Made with care</span>
+              <span style="background:rgba(44,24,16,0.06); color:#2c1810; font-size:0.82rem; font-weight:700; padding:6px 14px; border-radius:50px; letter-spacing:0.05em;">🌱 Always learning</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== VALUES STRIP ===== -->
+    <section style="background: #f0e8da; padding: 48px 0;" aria-label="Core values">
+      <div class="container">
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:32px; text-align:center;">
+          <div class="fade-up" data-delay="1">
+            <div style="font-size:2rem; margin-bottom:10px;">🥦</div>
+            <h3 style="font-size:1.05rem; margin-bottom:6px;">Real food, real people</h3>
+            <p style="font-size:0.9rem; color:rgba(44,24,16,0.65);">No fad diets. No extreme restriction. Just balanced, enjoyable meals you can actually make.</p>
+          </div>
+          <div class="fade-up" data-delay="2">
+            <div style="font-size:2rem; margin-bottom:10px;">💡</div>
+            <h3 style="font-size:1.05rem; margin-bottom:6px;">Smarter every day</h3>
+            <p style="font-size:0.9rem; color:rgba(44,24,16,0.65);">Our system learns your preferences over time, so your plans keep getting better the more you use it.</p>
+          </div>
+          <div class="fade-up" data-delay="3">
+            <div style="font-size:2rem; margin-bottom:10px;">💸</div>
+            <h3 style="font-size:1.05rem; margin-bottom:6px;">Budget-friendly by design</h3>
+            <p style="font-size:0.9rem; color:rgba(44,24,16,0.65);">We built Mealody for students and families who need to eat well without breaking the bank.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MISSION ===== -->
+    <section class="mission section-pad" aria-label="Our mission">
+      <div class="container">
+        <div class="mission__inner">
+          <h2 class="fade-up">Our Mission</h2>
+          <p class="fade-up" data-delay="1">
+            Mealody exists to make healthy, affordable eating feel effortless — for students, families, and everyone in between.
+            We believe the best meal plan is one you'll actually stick to. That's why we built a system that learns from you,
+            adapts to your life, and grows with you over time.
+          </p>
+          <div class="fade-up" data-delay="2" style="margin-top:36px;">
+            <a href="index.html#waitlist" class="btn btn-primary">Join the Waitlist</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__logo">
+          <svg width="28" height="36" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <ellipse cx="16" cy="8" rx="8" ry="7" fill="#FFF8F0" opacity="0.85"/>
+            <rect x="14.5" y="14" width="3" height="18" rx="1.5" fill="#FFF8F0" opacity="0.85"/>
+            <path d="M16 32 Q8 36 10 39 Q14 42 18 38" stroke="#FFF8F0" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.85"/>
+            <circle cx="10" cy="39" r="2.5" fill="#FFF8F0" opacity="0.85"/>
+          </svg>
+          Mealody
+        </div>
+        <nav class="footer__nav" aria-label="Footer navigation">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="how-it-works.html">How It Works</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <div class="footer__right">
+          <p class="footer__tagline">Your meals, your melody.</p>
+          <p class="footer__copy">&copy; 2026 Mealody. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

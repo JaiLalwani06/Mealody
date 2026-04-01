@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How It Works — Mealody</title>
+  <meta name="description" content="Three simple steps to meals you'll actually look forward to. See how Mealody creates your personalized meal plan." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar" role="banner">
+    <div class="container navbar__inner">
+      <a href="index.html" class="navbar__logo" aria-label="Mealody home">
+        <svg width="32" height="40" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <ellipse cx="16" cy="8" rx="8" ry="7" fill="#C4714A"/>
+          <rect x="14.5" y="14" width="3" height="18" rx="1.5" fill="#C4714A"/>
+          <path d="M16 32 Q8 36 10 39 Q14 42 18 38" stroke="#C4714A" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <circle cx="10" cy="39" r="2.5" fill="#C4714A"/>
+        </svg>
+        <span class="navbar__logo-text">Mealody</span>
+      </a>
+      <button class="navbar__toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="navbar__nav" aria-label="Main navigation">
+        <a href="index.html" class="navbar__link" data-page="index.html">Home</a>
+        <a href="about.html" class="navbar__link" data-page="about.html">About</a>
+        <a href="how-it-works.html" class="navbar__link" data-page="how-it-works.html">How It Works</a>
+        <a href="contact.html" class="navbar__link" data-page="contact.html">Contact</a>
+        <div class="navbar__cta">
+          <a href="index.html#waitlist" class="btn btn-primary btn-sm">Try Free</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== PAGE HEADER ===== -->
+    <section class="page-header" aria-label="How Mealody works">
+      <div class="container">
+        <h1 class="fade-up">How Mealody Works</h1>
+        <p class="fade-up" data-delay="1">Three simple steps to meals you'll actually look forward to.</p>
+      </div>
+    </section>
+
+    <!-- ===== STEPS ===== -->
+    <section class="steps-section section-pad" aria-label="Three steps">
+      <div class="container">
+        <div class="steps__row">
+
+          <div class="step fade-up" data-delay="1">
+            <span class="step__number">01</span>
+            <h3>Set Your Preferences</h3>
+            <p>Tell Mealody what you like, what you avoid, and how much time you have. It takes about two minutes.</p>
+          </div>
+
+          <div class="step__arrow fade-up" data-delay="2" aria-hidden="true">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 18h20M22 12l6 6-6 6" stroke="#C4714A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+
+          <div class="step fade-up" data-delay="3">
+            <span class="step__number">02</span>
+            <h3>Get Your Plan</h3>
+            <p>Mealody generates a full week of meals tailored to your taste profile, schedule, and budget.</p>
+          </div>
+
+          <div class="step__arrow fade-up" data-delay="4" aria-hidden="true">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 18h20M22 12l6 6-6 6" stroke="#C4714A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+
+          <div class="step fade-up" data-delay="5">
+            <span class="step__number">03</span>
+            <h3>Rate &amp; Refine</h3>
+            <p>After each meal, give it a quick rating. Mealody learns what you love and keeps getting better.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== INTERACTIVE DEMO ===== -->
+    <section class="demo-section section-pad" aria-label="Interactive meal plan demo">
+      <div class="container">
+
+        <div class="demo-section__header">
+          <h2 class="fade-up">Your week, planned.</h2>
+          <p class="fade-up" data-delay="1">Here's a sample week from Mealody. Click any day to explore the meals.</p>
+        </div>
+
+        <div class="demo-box fade-up" data-delay="2">
+
+          <!-- Day Tabs -->
+          <div class="day-tabs" role="tablist" aria-label="Days of the week">
+            <button class="day-tab active" role="tab" aria-selected="true" data-day="mon" id="tab-mon" aria-controls="content-mon">Mon</button>
+            <button class="day-tab" role="tab" aria-selected="false" data-day="tue" id="tab-tue" aria-controls="content-tue">Tue</button>
+            <button class="day-tab" role="tab" aria-selected="false" data-day="wed" id="tab-wed" aria-controls="content-wed">Wed</button>
+            <button class="day-tab" role="tab" aria-selected="false" data-day="thu" id="tab-thu" aria-controls="content-thu">Thu</button>
+            <button class="day-tab" role="tab" aria-selected="false" data-day="fri" id="tab-fri" aria-controls="content-fri">Fri</button>
+            <button class="day-tab" role="tab" aria-selected="false" data-day="sat" id="tab-sat" aria-controls="content-sat">Sat</button>
+            <button class="day-tab" role="tab" aria-selected="false" data-day="sun" id="tab-sun" aria-controls="content-sun">Sun</button>
+          </div>
+
+          <!-- ===== MONDAY ===== -->
+          <div class="day-content active" data-day="mon" id="content-mon" role="tabpanel" aria-labelledby="tab-mon">
+            <article class="meal-card">
+              <p class="meal-card__type">Breakfast</p>
+              <p class="meal-card__emoji">🥑</p>
+              <h3 class="meal-card__name">Avocado Toast with Eggs</h3>
+              <p class="meal-card__desc">Sourdough toast topped with smashed avocado, poached eggs, and red pepper flakes.</p>
+            </article>
+            <article class="meal-card">
+              <p class="meal-card__type">Lunch</p>
+              <p class="meal-card__emoji">🥗</p>
+              <h3 class="meal-card__name">Mediterranean Grain Bowl</h3>
+              <p class="meal-card__desc">Farro, roasted chickpeas, cucumber, tomato, and tzatziki dressing.</p>
+            </article>
+            <article class="meal-card">
+              <p class="meal-card__type">Dinner</p>
+              <p class="meal-card__emoji">🍗</p>
+              <h3 class="meal-card__name">Lemon Herb Chicken</h3>
+              <p class="meal-card__desc">Pan-seared chicken thighs with roasted potatoes and green beans.</p>
+            </article>
+          </div>
+
+          <!-- ===== TUESDAY ===== -->
+          <div class="day-content" data-day="tue" id="content-tue" role="tabpanel" aria-labelledby="tab-tue">
+            <article class="meal-card">
+              <p class="meal-card__type">Breakfast</p>
+              <p class="meal-card__emoji">🫐</p>
+              <h3 class="meal-card__name">Blueberry Greek Yogurt Parfait</h3>
+              <p class="meal-card__desc">Layered Greek yogurt, fresh blueberries, granola, and a drizzle of honey.</p>
+            </article>
+            <article class="meal-card">
+              <p class="meal-card__type">Lunch</p>
+              <p class="meal-card__emoji">🌮</p>
+              <h3 class="meal-card__name">Chicken Tacos</h3>
+              <p class="meal-card__desc">Seasoned chicken, cabbage slaw, pico de gallo, and lime crema in warm tortillas.</p>
+            </article>
+            <article class="meal-card">
+              <p class="meal-card__type">Dinner</p>
+              <p class="meal-card__emoji">🍝</p>
+              <h3 class="meal-card__name">Garlic Butter Pasta</h3>
+              <p class="meal-card__desc">Al dente pasta tossed in garlic butter with cherry tomatoes and fresh basil.</p>
+            </article>
+          </div>
+
+          <!-- ===== WEDNESDAY ===== -->
+          <div class="day-content" data-day="wed" id="content-wed" role="tabpanel" aria-labelledby="tab-wed">
+            <article class="meal-card">
+              <p class="meal-card__type">Breakfast</p>
+              <p class="meal-card__emoji">🍳</p>
+              <h3 class="meal-card__name">Veggie Scrambled Eggs</h3>
+              <p class="meal-card__desc">Fluffy eggs scrambled with bell peppers, spinach, and feta cheese.</p>
+            </article>
+            <article class="meal-card">
+              <p class="meal-card__type">Lunch</p>
+              <p class="meal-card__emoji">🥪</p>
+              <h3 class="meal-card__name">Turkey Avocado Sandwich</h3>
+              <p class="meal-card__desc">Whole grain bread, sliced turkey, avocado, arugula, and Dijon mustard.</p>
+            </article>
+            <article class="meal-card">
+              <p class="meal-card__type">Dinner</p>
+              <p class="meal-card__emoji">🍛</p>
+              <h3 class="meal-card__name">Coconut Lentil Curry</h3>
+              <p class="meal-card__desc">Red lentils simmered in coconut milk with spinach, served over basmati rice.</p>
+            </article>
+          </div>
+
+          <!-- ===== THURSDAY ===== -->
+          <div class="day-content" data-day="thu" id="content-thu" role="tabpanel" aria-labelledby="tab-thu">
+            <article class="meal-card">
+              <p class="meal-card__type">Breakfast</p>
+              <p class="meal-card__emoji">🥞</p>
+              <h3 class="meal-card__name">Banana Oat Pancakes</h3>
+              <p class="meal-card__desc">Fluffy pancakes made with oats and ripe banana, topped with maple syrup.</p>
+            </article>
+            <article class="meal-card">
+              <p class="meal-card__type">Lunch</p>
+              <p class="meal-card__emoji">🍜</p>
+              <h3 class="meal-card__name">Miso Ramen Bowl</h3>
+              <p class="meal-card__desc">Light miso broth with ramen noodles, soft-boiled egg, corn, and nori.</p>
+            </article>
+            <article class="meal-card">
+              <p class="meal-card__type">Dinner</p>
+              <p class="meal-card__emoji">🐟</p>
+              <h3 class="meal-card__name">Baked Salmon with Quinoa</h3>
+              <p class="meal-card__desc">Lemon-glazed salmon fillet served with herbed quinoa and roasted asparagus.</p>
+            </article>
+          </div>
+
+          <!-- ===== FRIDAY ===== -->
+          <div class="day-content" data-day="fri" id="content-fri" role="tabpanel" aria-labelledby="tab-fri">
+            <article class="meal-card">
+              <p class="meal-card__type">Breakfast</p>
+              <p class="meal-card__emoji">🍓</p>
+              <h3 class="meal-card__name">Strawberry Smoothie Bowl</h3>
+              <p class="meal-card__desc">Blended frozen strawberries topped with banana slices, chia seeds, and granola.</p>
+            </article>
+            <article class="meal-card">
+              <p class="meal-card__type">Lunch</p>
+              <p class="meal-card__emoji">🥙</p>
+              <h3 class="meal-card__name">Falafel Wrap</h3>
+              <p class="meal-card__desc">Crispy falafel, hummus, pickled red onion, and cucumber in a warm flatbread.</p>
+            </article>
+            <article class="meal-card">
+              <p class="meal-card__type">Dinner</p>
+              <p class="meal-card__emoji">🍕</p>
+              <h3 class="meal-card__name">Homemade Margherita Pizza</h3>
+              <p class="meal-card__desc">Thin crust pizza with San Marzano tomato sauce, fresh mozzarella, and basil.</p>
+            </article>
+          </div>
+
+          <!-- ===== SATURDAY ===== -->
+          <div class="day-content" data-day="sat" id="content-sat" role="tabpanel" aria-labelledby="tab-sat">
+            <article class="meal-card">
+              <p class="meal-card__type">Breakfast</p>
+              <p class="meal-card__emoji">🧇</p>
+              <h3 class="meal-card__name">Cinnamon French Toast</h3>
+              <p class="meal-card__desc">Thick-cut brioche dipped in cinnamon custard, pan-fried and dusted with powdered sugar.</p>
+            </article>
+            <article class="meal-card">
+              <p class="meal-card__type">Lunch</p>
+              <p class="meal-card__emoji">🍱</p>
+              <h3 class="meal-card__name">Sesame Noodle Box</h3>
+              <p class="meal-card__desc">Soba noodles tossed in sesame-ginger sauce with shredded carrots and edamame.</p>
+            </article>
+            <article class="meal-card">
+              <p class="meal-card__type">Dinner</p>
+              <p class="meal-card__emoji">🥩</p>
+              <h3 class="meal-card__name">Herb-Crusted Steak</h3>
+              <p class="meal-card__desc">Sirloin steak with rosemary-garlic crust, served with roasted sweet potato wedges.</p>
+            </article>
+          </div>
+
+          <!-- ===== SUNDAY ===== -->
+          <div class="day-content" data-day="sun" id="content-sun" role="tabpanel" aria-labelledby="tab-sun">
+            <article class="meal-card">
+              <p class="meal-card__type">Breakfast</p>
+              <p class="meal-card__emoji">🫕</p>
+              <h3 class="meal-card__name">Veggie Shakshuka</h3>
+              <p class="meal-card__desc">Poached eggs in a rich tomato and pepper sauce, served with crusty bread.</p>
+            </article>
+            <article class="meal-card">
+              <p class="meal-card__type">Lunch</p>
+              <p class="meal-card__emoji">🍲</p>
+              <h3 class="meal-card__name">Leftover Remix Bowl</h3>
+              <p class="meal-card__desc">Repurposed week leftovers tossed into a grain bowl with tahini dressing.</p>
+            </article>
+            <article class="meal-card">
+              <p class="meal-card__type">Dinner</p>
+              <p class="meal-card__emoji">🍗</p>
+              <h3 class="meal-card__name">Slow-Cooker Chicken Soup</h3>
+              <p class="meal-card__desc">Tender chicken, carrots, celery, and egg noodles in a golden herb broth.</p>
+            </article>
+          </div>
+
+          <!-- Grocery Button -->
+          <div class="demo-footer">
+            <button class="btn btn-primary" id="grocery-btn" aria-expanded="false" aria-controls="grocery-panel">
+              Generate Grocery List
+            </button>
+          </div>
+
+          <!-- Grocery Panel -->
+          <div class="grocery-panel" id="grocery-panel" aria-live="polite">
+            <div class="grocery-panel__inner">
+              <h3 style="font-size:1.15rem; margin-bottom:20px; color:var(--dark);">Your Week's Grocery List</h3>
+              <div class="grocery-panel__grid">
+
+                <div class="grocery-category">
+                  <h4>Proteins</h4>
+                  <ul>
+                    <li>Chicken thighs (2 lbs)</li>
+                    <li>Salmon fillet (1 lb)</li>
+                    <li>Eggs (1 dozen)</li>
+                    <li>Greek yogurt (32 oz)</li>
+                    <li>Red lentils (1 cup)</li>
+                    <li>Turkey slices (6 oz)</li>
+                  </ul>
+                </div>
+
+                <div class="grocery-category">
+                  <h4>Produce</h4>
+                  <ul>
+                    <li>Avocados (3)</li>
+                    <li>Blueberries (1 pint)</li>
+                    <li>Strawberries (1 lb)</li>
+                    <li>Bananas (4)</li>
+                    <li>Cherry tomatoes (1 pint)</li>
+                    <li>Bell peppers (2)</li>
+                    <li>Spinach (5 oz bag)</li>
+                    <li>Asparagus (1 bunch)</li>
+                    <li>Sweet potatoes (2)</li>
+                    <li>Cucumber (1)</li>
+                    <li>Arugula (3 oz)</li>
+                    <li>Green beans (1/2 lb)</li>
+                  </ul>
+                </div>
+
+                <div class="grocery-category">
+                  <h4>Pantry</h4>
+                  <ul>
+                    <li>Sourdough bread</li>
+                    <li>Farro (1 cup)</li>
+                    <li>Basmati rice (2 cups)</li>
+                    <li>Soba noodles (8 oz)</li>
+                    <li>Quinoa (1 cup)</li>
+                    <li>Olive oil</li>
+                    <li>Garlic (1 head)</li>
+                    <li>Coconut milk (1 can)</li>
+                    <li>Pasta (12 oz)</li>
+                    <li>Sesame oil</li>
+                    <li>Tahini</li>
+                    <li>Miso paste</li>
+                  </ul>
+                </div>
+
+                <div class="grocery-category">
+                  <h4>Dairy</h4>
+                  <ul>
+                    <li>Feta cheese (4 oz)</li>
+                    <li>Mozzarella (8 oz)</li>
+                    <li>Parmesan (2 oz)</li>
+                    <li>Butter (1 stick)</li>
+                  </ul>
+                </div>
+
+              </div>
+              <p class="grocery-note">* The real Mealody app personalizes this grocery list to your unique taste profile, pantry, and local store sales.</p>
+            </div>
+          </div>
+
+        </div><!-- /.demo-box -->
+
+      </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section style="background:var(--dark); padding:72px 0; text-align:center;" aria-label="Call to action">
+      <div class="container">
+        <h2 class="fade-up" style="color:var(--cream); font-size:clamp(1.7rem,4vw,2.5rem); margin-bottom:14px;">
+          Ready to try it for real?
+        </h2>
+        <p class="fade-up" data-delay="1" style="color:rgba(255,248,240,0.65); margin-bottom:32px; font-size:1.05rem;">
+          Join our waitlist and get early access when we launch.
+        </p>
+        <a href="https://mealody.vercel.app" class="btn btn-primary fade-up" data-delay="2" target="_blank" rel="noopener">Try Mealody Free →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__logo">
+          <svg width="28" height="36" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <ellipse cx="16" cy="8" rx="8" ry="7" fill="#FFF8F0" opacity="0.85"/>
+            <rect x="14.5" y="14" width="3" height="18" rx="1.5" fill="#FFF8F0" opacity="0.85"/>
+            <path d="M16 32 Q8 36 10 39 Q14 42 18 38" stroke="#FFF8F0" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.85"/>
+            <circle cx="10" cy="39" r="2.5" fill="#FFF8F0" opacity="0.85"/>
+          </svg>
+          Mealody
+        </div>
+        <nav class="footer__nav" aria-label="Footer navigation">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="how-it-works.html">How It Works</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <div class="footer__right">
+          <p class="footer__tagline">Your meals, your melody.</p>
+          <p class="footer__copy">&copy; 2026 Mealody. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
