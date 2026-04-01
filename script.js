@@ -57,6 +57,17 @@
   elements.forEach(el => observer.observe(el));
 })();
 
+/* === Supabase client for forms === */
+const SUPABASE_URL = 'https://tjzrnzfwvroinunoriqs.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_ylPkks0-E0jUQRlQ-zUVEA_qxwBUYwO';
+
+function getSupabase() {
+  if (window.supabase) {
+    return window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  }
+  return null;
+}
+
 /* === Waitlist Form (index.html) === */
 (function () {
   const form = document.getElementById('waitlist-form');
@@ -82,13 +93,14 @@
     submitBtn.textContent = 'Joining...';
 
     try {
-      const resp = await fetch('https://mealody.vercel.app/api/waitlist', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: nameVal, email: emailVal }),
-      });
-      const json = await resp.json();
-      if (!resp.ok) throw new Error(json.error || 'Something went wrong.');
+      const db = getSupabase();
+      if (db) {
+        const { error } = await db.from('waitlist').insert([{ name: nameVal, email: emailVal }]);
+        if (error) {
+          if (error.code === '23505') throw new Error("You're already on the list!");
+          throw new Error('Something went wrong. Please try again.');
+        }
+      }
       form.style.display = 'none';
       successEl.classList.add('visible');
     } catch (err) {
@@ -131,13 +143,11 @@
     submitBtn.textContent = 'Sending...';
 
     try {
-      const resp = await fetch('https://mealody.vercel.app/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, message }),
-      });
-      const json = await resp.json();
-      if (!resp.ok) throw new Error(json.error || 'Something went wrong.');
+      const db = getSupabase();
+      if (db) {
+        const { error } = await db.from('contact_messages').insert([{ name, email, message }]);
+        if (error) throw new Error('Something went wrong. Please try again.');
+      }
       form.style.display = 'none';
       successEl.classList.add('visible');
     } catch (err) {
