@@ -65,16 +65,6 @@
   const errorEl = document.getElementById('waitlist-error');
   const successEl = document.getElementById('waitlist-success');
 
-  // TODO: Replace with your Supabase project URL and anon key
-  const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-  const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
-
-  // Initialize Supabase client (only if credentials are set)
-  let supabaseClient = null;
-  if (SUPABASE_URL !== 'YOUR_SUPABASE_URL' && window.supabase) {
-    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-  }
-
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     errorEl.classList.remove('visible');
@@ -82,14 +72,9 @@
     const nameVal = form.querySelector('#waitlist-name').value.trim();
     const emailVal = form.querySelector('#waitlist-email').value.trim();
 
-    // Basic validation
-    if (!nameVal) {
-      showError('Please enter your name.');
-      return;
-    }
+    if (!nameVal) { showError('Please enter your name.'); return; }
     if (!emailVal || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
-      showError('Please enter a valid email address.');
-      return;
+      showError('Please enter a valid email address.'); return;
     }
 
     const submitBtn = form.querySelector('button[type="submit"]');
@@ -97,20 +82,17 @@
     submitBtn.textContent = 'Joining...';
 
     try {
-      if (supabaseClient) {
-        // Insert into Supabase waitlist table
-        const { error } = await supabaseClient
-          .from('waitlist')
-          .insert([{ name: nameVal, email: emailVal }]);
-
-        if (error) throw error;
-      }
-      // Show success (even without Supabase for demo purposes)
+      const resp = await fetch('https://mealody.vercel.app/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: nameVal, email: emailVal }),
+      });
+      const json = await resp.json();
+      if (!resp.ok) throw new Error(json.error || 'Something went wrong.');
       form.style.display = 'none';
       successEl.classList.add('visible');
     } catch (err) {
-      console.error('Waitlist submission error:', err);
-      showError('Something went wrong. Please try again later.');
+      showError(err.message || 'Something went wrong. Please try again.');
       submitBtn.disabled = false;
       submitBtn.textContent = 'Join Waitlist';
     }
@@ -129,36 +111,40 @@
 
   const successEl = document.getElementById('contact-success');
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const name = form.querySelector('#contact-name').value.trim();
     const email = form.querySelector('#contact-email').value.trim();
     const message = form.querySelector('#contact-message').value.trim();
 
-    // Clear previous errors
     form.querySelectorAll('.field-error').forEach(el => el.remove());
 
     let valid = true;
-
-    if (!name) {
-      addFieldError(form.querySelector('#contact-name'), 'Please enter your name.');
-      valid = false;
-    }
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      addFieldError(form.querySelector('#contact-email'), 'Please enter a valid email.');
-      valid = false;
-    }
-    if (!message) {
-      addFieldError(form.querySelector('#contact-message'), 'Please enter a message.');
-      valid = false;
-    }
-
+    if (!name) { addFieldError(form.querySelector('#contact-name'), 'Please enter your name.'); valid = false; }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { addFieldError(form.querySelector('#contact-email'), 'Please enter a valid email.'); valid = false; }
+    if (!message) { addFieldError(form.querySelector('#contact-message'), 'Please enter a message.'); valid = false; }
     if (!valid) return;
 
-    // Simulate submission
-    form.style.display = 'none';
-    successEl.classList.add('visible');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    try {
+      const resp = await fetch('https://mealody.vercel.app/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message }),
+      });
+      const json = await resp.json();
+      if (!resp.ok) throw new Error(json.error || 'Something went wrong.');
+      form.style.display = 'none';
+      successEl.classList.add('visible');
+    } catch (err) {
+      addFieldError(form.querySelector('#contact-message'), err.message || 'Something went wrong. Please try again.');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Message';
+    }
   });
 
   function addFieldError(input, message) {
