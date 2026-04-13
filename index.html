@@ -5,226 +5,527 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mealody — Meal Planning That Feels Like Your Favorite Song</title>
   <meta name="description" content="Mealody builds personalized meal plans that match your taste, your schedule, and your budget — then handles the grocery list." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <!-- Supabase CDN for waitlist form -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
 </head>
 <body>
 
-  <!-- ===== NAVBAR ===== -->
-  <header class="navbar" role="banner">
-    <div class="container navbar__inner">
-      <a href="index.html" class="navbar__logo" aria-label="Mealody home">
-        <svg width="32" height="40" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <ellipse cx="16" cy="8" rx="8" ry="7" fill="#C4714A"/>
-          <rect x="14.5" y="14" width="3" height="18" rx="1.5" fill="#C4714A"/>
-          <path d="M16 32 Q8 36 10 39 Q14 42 18 38" stroke="#C4714A" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-          <circle cx="10" cy="39" r="2.5" fill="#C4714A"/>
+  <!-- ===== WIN2K TASKBAR (top) ===== -->
+  <div class="win-taskbar" role="banner">
+    <div class="win-taskbar__start">
+      <button class="win-start-btn" aria-label="Start menu">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <rect x="1" y="1" width="6" height="6" fill="#FF0000"/>
+          <rect x="9" y="1" width="6" height="6" fill="#00AA00"/>
+          <rect x="1" y="9" width="6" height="6" fill="#0000FF"/>
+          <rect x="9" y="9" width="6" height="6" fill="#FFAA00"/>
         </svg>
-        <span class="navbar__logo-text">Mealody</span>
-      </a>
-      <button class="navbar__toggle" aria-label="Toggle navigation" aria-expanded="false">
-        <span></span><span></span><span></span>
+        <strong>Start</strong>
       </button>
-      <nav class="navbar__nav" aria-label="Main navigation">
-        <a href="index.html" class="navbar__link" data-page="index.html">Home</a>
-        <a href="about.html" class="navbar__link" data-page="about.html">About</a>
-        <a href="how-it-works.html" class="navbar__link" data-page="how-it-works.html">How It Works</a>
-        <a href="contact.html" class="navbar__link" data-page="contact.html">Contact</a>
-        <div class="navbar__cta">
-          <a href="https://mealody.vercel.app" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Try Free</a>
-        </div>
-      </nav>
+      <div class="win-taskbar__divider"></div>
+      <div class="win-taskbar__apps">
+        <button class="win-taskbar__app win-taskbar__app--active" aria-current="page">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <rect x="1" y="3" width="12" height="9" rx="1" fill="#E8E0D0" stroke="#888" stroke-width="1"/>
+            <rect x="1" y="3" width="12" height="3" fill="#0A246A"/>
+            <rect x="2" y="4" width="10" height="1" fill="white" opacity="0.3"/>
+          </svg>
+          Mealody - Home
+        </button>
+        <a href="about.html" class="win-taskbar__app">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <rect x="1" y="3" width="12" height="9" rx="1" fill="#E8E0D0" stroke="#888" stroke-width="1"/>
+            <rect x="1" y="3" width="12" height="3" fill="#6B6B6B"/>
+          </svg>
+          About
+        </a>
+        <a href="how-it-works.html" class="win-taskbar__app">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <rect x="1" y="3" width="12" height="9" rx="1" fill="#E8E0D0" stroke="#888" stroke-width="1"/>
+            <rect x="1" y="3" width="12" height="3" fill="#6B6B6B"/>
+          </svg>
+          How It Works
+        </a>
+        <a href="contact.html" class="win-taskbar__app">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <rect x="1" y="3" width="12" height="9" rx="1" fill="#E8E0D0" stroke="#888" stroke-width="1"/>
+            <rect x="1" y="3" width="12" height="3" fill="#6B6B6B"/>
+          </svg>
+          Contact
+        </a>
+      </div>
     </div>
-  </header>
+    <div class="win-taskbar__tray">
+      <a href="https://mealody.vercel.app" class="win-tray-cta" target="_blank" rel="noopener">
+        Try Free
+      </a>
+      <div class="win-tray-clock" id="win-clock">12:00 PM</div>
+    </div>
+  </div>
 
-  <main>
+  <!-- ===== DESKTOP ===== -->
+  <div class="win-desktop" role="main">
 
-    <!-- ===== HERO ===== -->
-    <section class="hero" aria-label="Hero">
-      <div class="hero__blob hero__blob--1" aria-hidden="true"></div>
-      <div class="hero__blob hero__blob--2" aria-hidden="true"></div>
-      <div class="hero__blob hero__blob--3" aria-hidden="true"></div>
-      <div class="container">
-        <div class="hero__content">
-          <div class="hero__eyebrow fade-up">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-              <path d="M7 1L8.5 5H13L9.5 7.5L11 12L7 9.5L3 12L4.5 7.5L1 5H5.5L7 1Z" fill="#C4714A"/>
-            </svg>
-            Now in Early Access
+    <!-- Desktop icons (decorative) -->
+    <div class="win-desktop__icons" aria-hidden="true">
+      <div class="win-icon">
+        <div class="win-icon__img">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect x="2" y="2" width="28" height="28" rx="2" fill="#E8E8FF" stroke="#9090C0" stroke-width="1.5"/>
+            <path d="M8 22 C8 14 16 8 24 12" stroke="#4040B0" stroke-width="2" stroke-linecap="round" fill="none"/>
+            <circle cx="16" cy="14" r="4" fill="#6060D0"/>
+            <path d="M12 22 Q16 18 20 22" fill="#8080E0"/>
+          </svg>
+        </div>
+        <span>My Recipes</span>
+      </div>
+      <div class="win-icon">
+        <div class="win-icon__img">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect x="4" y="6" width="24" height="20" rx="1" fill="#FFFEE0" stroke="#808060" stroke-width="1.5"/>
+            <rect x="4" y="6" width="24" height="4" fill="#204080"/>
+            <rect x="7" y="14" width="18" height="1.5" fill="#C0C0A0"/>
+            <rect x="7" y="18" width="13" height="1.5" fill="#C0C0A0"/>
+            <rect x="7" y="22" width="15" height="1.5" fill="#C0C0A0"/>
+          </svg>
+        </div>
+        <span>Meal Plans</span>
+      </div>
+      <div class="win-icon">
+        <div class="win-icon__img">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <path d="M6 26 L6 10 L26 10 L26 26 Z" fill="#E0F0E0" stroke="#609060" stroke-width="1.5"/>
+            <path d="M6 10 L16 4 L26 10" fill="#80B080" stroke="#609060" stroke-width="1.5"/>
+            <rect x="12" y="18" width="8" height="8" fill="#609060"/>
+          </svg>
+        </div>
+        <span>Grocery List</span>
+      </div>
+      <div class="win-icon">
+        <div class="win-icon__img">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect x="2" y="2" width="28" height="28" rx="14" fill="#FFEEE0" stroke="#C08060" stroke-width="1.5"/>
+            <path d="M16 8 L17.5 13H22L18.5 15.5L20 20L16 17.5L12 20L13.5 15.5L10 13H14.5L16 8Z" fill="#C07040"/>
+          </svg>
+        </div>
+        <span>Mealody.exe</span>
+      </div>
+      <div class="win-icon">
+        <div class="win-icon__img">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect x="2" y="6" width="28" height="20" rx="2" fill="#F0F0F0" stroke="#909090" stroke-width="1.5"/>
+            <rect x="6" y="10" width="6" height="5" rx="1" fill="#4070C0"/>
+            <rect x="14" y="10" width="12" height="2" fill="#909090"/>
+            <rect x="14" y="14" width="8" height="2" fill="#C0C0C0"/>
+            <rect x="6" y="17" width="20" height="1.5" fill="#E0E0E0"/>
+            <rect x="6" y="20" width="16" height="1.5" fill="#E0E0E0"/>
+          </svg>
+        </div>
+        <span>About</span>
+      </div>
+      <div class="win-icon">
+        <div class="win-icon__img">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect x="2" y="8" width="28" height="16" rx="2" fill="#FFFFF0" stroke="#909060" stroke-width="1.5"/>
+            <path d="M6 12 L16 19 L26 12" stroke="#606030" stroke-width="2" stroke-linecap="round" fill="none"/>
+          </svg>
+        </div>
+        <span>Contact</span>
+      </div>
+    </div>
+
+    <!-- ===== HERO WINDOW ===== -->
+    <div class="win-window win-window--hero fade-up" role="region" aria-label="Welcome to Mealody">
+      <div class="win-titlebar">
+        <div class="win-titlebar__left">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <ellipse cx="7" cy="3.5" rx="3.5" ry="3" fill="#C4714A"/>
+            <rect x="6.25" y="6" width="1.5" height="6" rx="0.75" fill="#C4714A"/>
+            <path d="M7 12 Q4 13.5 4.5 15" stroke="#C4714A" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+            <circle cx="4.5" cy="15" r="1.2" fill="#C4714A"/>
+          </svg>
+          Mealody — Welcome
+        </div>
+        <div class="win-titlebar__controls" aria-hidden="true">
+          <button class="win-btn-ctrl win-btn-ctrl--min" tabindex="-1">_</button>
+          <button class="win-btn-ctrl win-btn-ctrl--max" tabindex="-1">□</button>
+          <button class="win-btn-ctrl win-btn-ctrl--close" tabindex="-1">✕</button>
+        </div>
+      </div>
+      <div class="win-menubar" aria-hidden="true">
+        <span>File</span>
+        <span>Edit</span>
+        <span>View</span>
+        <span>Favorites</span>
+        <span>Tools</span>
+        <span>Help</span>
+      </div>
+      <div class="win-toolbar" aria-hidden="true">
+        <button class="win-toolbtn" disabled>◄ Back</button>
+        <button class="win-toolbtn" disabled>Forward ►</button>
+        <button class="win-toolbtn">⬆ Up</button>
+        <div class="win-toolbar__sep"></div>
+        <button class="win-toolbtn">⤢ Search</button>
+        <button class="win-toolbtn">📁 Folders</button>
+        <div class="win-toolbar__sep"></div>
+        <div class="win-address-bar">
+          <span class="win-address-bar__label">Address</span>
+          <div class="win-address-bar__input">https://mealody.vercel.app/</div>
+          <button class="win-toolbtn">Go</button>
+        </div>
+      </div>
+      <div class="win-window__body">
+        <!-- Left sidebar panel (Explorer-style) -->
+        <div class="win-explorer-panel" aria-label="Quick links">
+          <div class="win-panel-section">
+            <div class="win-panel-header">Mealody Tasks</div>
+            <ul class="win-panel-list">
+              <li><a href="https://mealody.vercel.app" target="_blank" rel="noopener">&#9654; Start Meal Planning</a></li>
+              <li><a href="#waitlist">&#9654; Join Waitlist</a></li>
+              <li><a href="how-it-works.html">&#9654; How It Works</a></li>
+              <li><a href="about.html">&#9654; About Us</a></li>
+            </ul>
           </div>
-          <h1 class="fade-up" data-delay="1">Eating healthy should feel like your favorite song.</h1>
-          <p class="hero__sub fade-up" data-delay="2">
+          <div class="win-panel-section">
+            <div class="win-panel-header">Other Places</div>
+            <ul class="win-panel-list">
+              <li><a href="contact.html">&#128139; Contact</a></li>
+              <li><a href="#pricing">&#128178; Pricing</a></li>
+              <li><a href="#features">&#10003; Features</a></li>
+            </ul>
+          </div>
+          <div class="win-panel-section">
+            <div class="win-panel-header">Details</div>
+            <div class="win-panel-details">
+              <p><strong>Status:</strong> Early Access</p>
+              <p><strong>Version:</strong> 1.0.0</p>
+              <p><strong>Date:</strong> 2026</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main content area -->
+        <div class="win-content-area">
+          <!-- Hero badge -->
+          <div class="win-status-strip">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M6 1L7 4H10L7.5 6L8.5 9.5L6 7.5L3.5 9.5L4.5 6L2 4H5L6 1Z" fill="#C4714A"/>
+            </svg>
+            Now in Early Access &nbsp;|&nbsp; Free to try &nbsp;|&nbsp; No credit card required
+          </div>
+
+          <h1 class="win-hero-title fade-up" data-delay="1">
+            Eating healthy should feel like<br>your favorite song.
+          </h1>
+
+          <p class="win-hero-sub fade-up" data-delay="2">
             Mealody builds personalized meal plans that match your taste, your schedule, and your budget — then handles the grocery list.
           </p>
-          <div class="hero__buttons fade-up" data-delay="3">
-            <a href="https://mealody.vercel.app" class="btn btn-primary" target="_blank" rel="noopener">Try Mealody Free →</a>
-            <a href="how-it-works.html" class="btn btn-outline">See How It Works</a>
+
+          <div class="win-hero-actions fade-up" data-delay="3">
+            <a href="https://mealody.vercel.app" class="win-btn win-btn--primary" target="_blank" rel="noopener">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M7 1L8.2 4.5H12L9 6.8L10.2 10.5L7 8L3.8 10.5L5 6.8L2 4.5H5.8L7 1Z" fill="white"/>
+              </svg>
+              Try Mealody Free
+            </a>
+            <a href="how-it-works.html" class="win-btn win-btn--default">
+              See How It Works
+            </a>
+            <a href="#waitlist" class="win-btn win-btn--default">
+              Join Waitlist
+            </a>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- ===== EMAIL CAPTURE / WAITLIST ===== -->
-    <section class="email-capture" id="waitlist" aria-label="Join waitlist">
-      <div class="container">
-        <h2 class="fade-up">Be the first to know when we launch.</h2>
-        <p class="email-capture__sub fade-up" data-delay="1">No spam. Just one email when we're ready for you.</p>
-
-        <div id="waitlist-form-wrapper">
-          <form class="email-capture__form fade-up" data-delay="2" id="waitlist-form" novalidate>
-            <input
-              type="text"
-              id="waitlist-name"
-              class="form-control"
-              placeholder="Your name"
-              autocomplete="given-name"
-              aria-label="Your name"
-            />
-            <input
-              type="email"
-              id="waitlist-email"
-              class="form-control"
-              placeholder="Your email"
-              autocomplete="email"
-              aria-label="Your email address"
-            />
-            <button type="submit" class="btn btn-primary">Join Waitlist</button>
-            <span id="waitlist-error" role="alert"></span>
-          </form>
-        </div>
-
-        <div id="waitlist-success" role="status">
-          <p>You're on the list! We'll be in touch soon 🎵</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== FEATURE CARDS ===== -->
-    <section class="features section-pad" aria-label="Features">
-      <div class="container">
-        <div class="features__header">
-          <h2>Everything you need to eat well.</h2>
-          <p>Smart, simple tools that do the thinking so you can enjoy the eating.</p>
-        </div>
-        <div class="features__grid">
-
-          <!-- Card 1 -->
-          <div class="feature-card fade-up" data-delay="1">
-            <div class="feature-card__icon">
-              <svg viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M13 22s-9-5.5-9-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 5.5-9 11-9 11Z" fill="#7A9E7E" opacity="0.6"/>
-                <path d="M20 5l1.5-1.5M17 3l.5-2M22 8l2-.5" stroke="#7A9E7E" stroke-width="1.5" stroke-linecap="round"/>
+          <!-- Win2K info box -->
+          <div class="win-infobox fade-up" data-delay="4">
+            <div class="win-infobox__icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <circle cx="14" cy="14" r="13" fill="#ECE9D8" stroke="#ACA899" stroke-width="1"/>
+                <circle cx="14" cy="9" r="2.5" fill="#0A246A"/>
+                <rect x="12.5" y="13" width="3" height="8" rx="1" fill="#0A246A"/>
               </svg>
             </div>
-            <h3>It learns what you love</h3>
-            <p>Mealody gets smarter with every rating you give. The more you use it, the more personalized your plans become.</p>
-          </div>
-
-          <!-- Card 2 -->
-          <div class="feature-card fade-up" data-delay="2">
-            <div class="feature-card__icon">
-              <svg viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M6 4h14l2 4H4L6 4Z" fill="#7A9E7E" opacity="0.5"/>
-                <rect x="4" y="8" width="18" height="14" rx="2" fill="#7A9E7E" opacity="0.35"/>
-                <path d="M9 13h8M9 17h5" stroke="#7A9E7E" stroke-width="1.5" stroke-linecap="round"/>
-              </svg>
+            <div class="win-infobox__text">
+              <strong>Did you know?</strong> Mealody learns your taste preferences over time. The more you use it, the smarter your meal plans get — just like your favorite playlist.
             </div>
-            <h3>Your grocery list, done</h3>
-            <p>Every meal plan automatically generates a complete grocery list. Organized by section so your shopping trip is as quick as possible.</p>
+          </div>
+        </div>
+      </div>
+      <div class="win-statusbar" aria-hidden="true">
+        <span class="win-statusbar__item">Ready</span>
+        <span class="win-statusbar__item">&#127381; Early Access</span>
+        <span class="win-statusbar__item win-statusbar__item--right">Internet zone</span>
+      </div>
+    </div>
+
+    <!-- ===== WAITLIST WINDOW ===== -->
+    <section id="waitlist" aria-label="Join waitlist">
+      <div class="win-window win-window--waitlist fade-up">
+        <div class="win-titlebar win-titlebar--green">
+          <div class="win-titlebar__left">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <rect x="1" y="3" width="12" height="8" rx="1" fill="white" stroke="rgba(255,255,255,0.5)" stroke-width="0.5"/>
+              <path d="M3 5 L7 8 L11 5" stroke="#0A246A" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            </svg>
+            Join the Waitlist — mealody@early-access.exe
+          </div>
+          <div class="win-titlebar__controls" aria-hidden="true">
+            <button class="win-btn-ctrl win-btn-ctrl--min" tabindex="-1">_</button>
+            <button class="win-btn-ctrl win-btn-ctrl--max" tabindex="-1">□</button>
+            <button class="win-btn-ctrl win-btn-ctrl--close" tabindex="-1">✕</button>
+          </div>
+        </div>
+        <div class="win-window__body win-window__body--padded">
+          <div class="win-section-title">Be the first to know when we launch.</div>
+          <p class="win-section-sub">No spam. Just one email when we're ready for you.</p>
+
+          <div id="waitlist-form-wrapper">
+            <form class="win-form fade-up" data-delay="1" id="waitlist-form" novalidate>
+              <div class="win-form__row">
+                <label for="waitlist-name" class="win-label">Your Name:</label>
+                <input
+                  type="text"
+                  id="waitlist-name"
+                  class="win-input"
+                  placeholder="e.g. Jane Smith"
+                  autocomplete="given-name"
+                  aria-label="Your name"
+                />
+              </div>
+              <div class="win-form__row">
+                <label for="waitlist-email" class="win-label">Email Address:</label>
+                <input
+                  type="email"
+                  id="waitlist-email"
+                  class="win-input"
+                  placeholder="e.g. jane@example.com"
+                  autocomplete="email"
+                  aria-label="Your email address"
+                />
+              </div>
+              <div class="win-form__actions">
+                <button type="submit" class="win-btn win-btn--primary">OK</button>
+                <button type="reset" class="win-btn win-btn--default">Cancel</button>
+              </div>
+              <span id="waitlist-error" class="win-error-msg" role="alert"></span>
+            </form>
           </div>
 
-          <!-- Card 3 -->
-          <div class="feature-card fade-up" data-delay="3">
-            <div class="feature-card__icon">
-              <svg viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M13 3C8 3 4 7 4 12c0 4 2.5 7.5 6 9" stroke="#7A9E7E" stroke-width="1.8" stroke-linecap="round"/>
-                <path d="M13 3c5 0 9 4 9 9 0 4-2.5 7.5-6 9" stroke="#7A9E7E" stroke-width="1.8" stroke-linecap="round" opacity="0.5"/>
-                <path d="M10 15l2 2 4-5" stroke="#7A9E7E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <div id="waitlist-success" role="status">
+            <div class="win-dialog-success">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+                <circle cx="16" cy="16" r="15" fill="#ECE9D8" stroke="#ACA899" stroke-width="1"/>
+                <circle cx="16" cy="10" r="4" fill="#0A246A"/>
+                <rect x="14.5" y="16" width="3" height="9" rx="1" fill="#0A246A"/>
               </svg>
+              <div>
+                <strong>You're on the list!</strong>
+                <p>We'll be in touch soon. Your request has been logged.</p>
+              </div>
             </div>
-            <h3>Less waste, more savings</h3>
-            <p>Plans are built around what you already have and what's on sale. Say goodbye to wilting produce and forgotten pantry items.</p>
           </div>
-
         </div>
       </div>
     </section>
 
-    <!-- ===== PRICING ===== -->
-    <section class="pricing section-pad" aria-label="Pricing">
-      <div class="container">
-        <div class="pricing__header">
-          <h2>Simple, honest pricing.</h2>
-          <p>Start free forever. Upgrade when you're ready for more.</p>
+    <!-- ===== FEATURES WINDOW ===== -->
+    <section id="features" aria-label="Features">
+      <div class="win-window win-window--features fade-up">
+        <div class="win-titlebar">
+          <div class="win-titlebar__left">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <rect x="1" y="1" width="12" height="12" rx="1" fill="#E8E8E8" stroke="#888" stroke-width="1"/>
+              <path d="M4 7 L6 9 L10 5" stroke="#009900" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Features — Everything you need to eat well
+          </div>
+          <div class="win-titlebar__controls" aria-hidden="true">
+            <button class="win-btn-ctrl win-btn-ctrl--min" tabindex="-1">_</button>
+            <button class="win-btn-ctrl win-btn-ctrl--max" tabindex="-1">□</button>
+            <button class="win-btn-ctrl win-btn-ctrl--close" tabindex="-1">✕</button>
+          </div>
         </div>
-        <div class="pricing__grid">
+        <div class="win-window__body win-window__body--padded">
+          <p class="win-section-sub" style="margin-bottom: 20px;">Smart, simple tools that do the thinking so you can enjoy the eating.</p>
 
-          <!-- Free Plan -->
-          <div class="pricing-card fade-up" data-delay="1">
-            <p class="pricing-card__name">Free</p>
-            <p class="pricing-card__price">$0 <span>/ month</span></p>
-            <ul class="pricing-card__features">
-              <li>3 meal plans per week</li>
-              <li>Basic grocery list</li>
-              <li>Standard recipes</li>
-              <li>Community support</li>
-            </ul>
-            <a href="#waitlist" class="btn btn-outline">Get Started Free</a>
+          <div class="win-features-grid">
+
+            <div class="win-feature-card fade-up" data-delay="1">
+              <div class="win-feature-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="2" y="2" width="28" height="28" rx="2" fill="#E0EEE0" stroke="#80B080" stroke-width="1.5"/>
+                  <path d="M16 26s-10-6-10-12a6 6 0 0 1 10-4.5A6 6 0 0 1 26 14c0 6-10 12-10 12Z" fill="#60A060" opacity="0.7"/>
+                  <path d="M22 7l2-2M19 5l.5-2.5M24 10l2.5-.5" stroke="#60A060" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="win-feature-card__body">
+                <h3>It learns what you love</h3>
+                <p>Mealody gets smarter with every rating you give. The more you use it, the more personalized your plans become.</p>
+              </div>
+            </div>
+
+            <div class="win-feature-card fade-up" data-delay="2">
+              <div class="win-feature-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="2" y="2" width="28" height="28" rx="2" fill="#EEEEE0" stroke="#A0A060" stroke-width="1.5"/>
+                  <path d="M7 6h18l3 5H4L7 6Z" fill="#C0C080" opacity="0.7"/>
+                  <rect x="4" y="11" width="24" height="16" rx="1" fill="#D0D090" opacity="0.5"/>
+                  <path d="M10 17h12M10 21h8" stroke="#707040" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="win-feature-card__body">
+                <h3>Your grocery list, done</h3>
+                <p>Every meal plan automatically generates a complete grocery list. Organized by section so your shopping trip is as quick as possible.</p>
+              </div>
+            </div>
+
+            <div class="win-feature-card fade-up" data-delay="3">
+              <div class="win-feature-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="2" y="2" width="28" height="28" rx="2" fill="#E0E8F0" stroke="#6080A0" stroke-width="1.5"/>
+                  <path d="M16 4C10 4 5 9 5 15c0 5 3 9 7 11" stroke="#4070A0" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M16 4c6 0 11 5 11 11 0 5-3 9-7 11" stroke="#4070A0" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+                  <path d="M12 17l3 3 5-6" stroke="#4070A0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="win-feature-card__body">
+                <h3>Less waste, more savings</h3>
+                <p>Plans are built around what you already have and what's on sale. Say goodbye to wilting produce and forgotten pantry items.</p>
+              </div>
+            </div>
+
           </div>
-
-          <!-- Plus Plan -->
-          <div class="pricing-card pricing-card--popular fade-up" data-delay="2">
-            <span class="pricing-card__badge">Most Popular</span>
-            <p class="pricing-card__name">Mealody Plus</p>
-            <p class="pricing-card__price">$5.99 <span>/ month</span></p>
-            <ul class="pricing-card__features">
-              <li>Unlimited meal plans</li>
-              <li>Smart grocery list</li>
-              <li>Premium recipes</li>
-              <li>Taste profile learning</li>
-              <li>Priority support</li>
-              <li>Family mode (up to 6)</li>
-            </ul>
-            <a href="#waitlist" class="btn btn-primary">Start Plus Free Trial</a>
-          </div>
-
+        </div>
+        <div class="win-statusbar" aria-hidden="true">
+          <span class="win-statusbar__item">3 features found</span>
+          <span class="win-statusbar__item win-statusbar__item--right">Local intranet</span>
         </div>
       </div>
     </section>
 
-  </main>
-
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer" role="contentinfo">
-    <div class="container">
-      <div class="footer__inner">
-        <div class="footer__logo">
-          <svg width="28" height="36" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <ellipse cx="16" cy="8" rx="8" ry="7" fill="#FFF8F0" opacity="0.85"/>
-            <rect x="14.5" y="14" width="3" height="18" rx="1.5" fill="#FFF8F0" opacity="0.85"/>
-            <path d="M16 32 Q8 36 10 39 Q14 42 18 38" stroke="#FFF8F0" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.85"/>
-            <circle cx="10" cy="39" r="2.5" fill="#FFF8F0" opacity="0.85"/>
-          </svg>
-          Mealody
+    <!-- ===== PRICING WINDOW ===== -->
+    <section id="pricing" aria-label="Pricing">
+      <div class="win-window win-window--pricing fade-up">
+        <div class="win-titlebar">
+          <div class="win-titlebar__left">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <circle cx="7" cy="7" r="6" fill="#FFFEE0" stroke="#888" stroke-width="1"/>
+              <path d="M7 3v5l3 2" stroke="#808000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Pricing — Simple, honest pricing
+          </div>
+          <div class="win-titlebar__controls" aria-hidden="true">
+            <button class="win-btn-ctrl win-btn-ctrl--min" tabindex="-1">_</button>
+            <button class="win-btn-ctrl win-btn-ctrl--max" tabindex="-1">□</button>
+            <button class="win-btn-ctrl win-btn-ctrl--close" tabindex="-1">✕</button>
+          </div>
         </div>
-        <nav class="footer__nav" aria-label="Footer navigation">
-          <a href="index.html">Home</a>
-          <a href="about.html">About</a>
-          <a href="how-it-works.html">How It Works</a>
-          <a href="contact.html">Contact</a>
-        </nav>
-        <div class="footer__right">
-          <p class="footer__tagline">Your meals, your melody.</p>
-          <p class="footer__copy">&copy; 2026 Mealody. All rights reserved.</p>
+        <div class="win-window__body win-window__body--padded">
+          <p class="win-section-sub" style="margin-bottom: 20px;">Start free forever. Upgrade when you're ready for more.</p>
+
+          <div class="win-pricing-grid">
+
+            <div class="win-pricing-card fade-up" data-delay="1">
+              <div class="win-pricing-card__header">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <rect x="2" y="2" width="16" height="16" rx="1" fill="#ECE9D8" stroke="#ACA899" stroke-width="1.5"/>
+                  <path d="M5 10h10M5 7h7M5 13h8" stroke="#606060" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <span class="win-pricing-card__name">Free</span>
+              </div>
+              <div class="win-pricing-card__price-row">
+                <span class="win-pricing-card__price">$0</span>
+                <span class="win-pricing-card__period">/ month</span>
+              </div>
+              <div class="win-divider"></div>
+              <ul class="win-pricing-card__features">
+                <li><span class="win-check" aria-hidden="true">&#10003;</span> 3 meal plans per week</li>
+                <li><span class="win-check" aria-hidden="true">&#10003;</span> Basic grocery list</li>
+                <li><span class="win-check" aria-hidden="true">&#10003;</span> Standard recipes</li>
+                <li><span class="win-check" aria-hidden="true">&#10003;</span> Community support</li>
+              </ul>
+              <div class="win-divider"></div>
+              <a href="#waitlist" class="win-btn win-btn--default win-btn--full">Get Started Free</a>
+            </div>
+
+            <div class="win-pricing-card win-pricing-card--popular fade-up" data-delay="2">
+              <div class="win-pricing-card__badge">&#9733; Most Popular</div>
+              <div class="win-pricing-card__header">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <circle cx="10" cy="10" r="8" fill="#ECE9D8" stroke="#C4714A" stroke-width="1.5"/>
+                  <path d="M10 3 L11.5 7.5H16L12.5 10L14 14.5L10 12L6 14.5L7.5 10L4 7.5H8.5L10 3Z" fill="#C4714A"/>
+                </svg>
+                <span class="win-pricing-card__name">Mealody Plus</span>
+              </div>
+              <div class="win-pricing-card__price-row">
+                <span class="win-pricing-card__price">$5.99</span>
+                <span class="win-pricing-card__period">/ month</span>
+              </div>
+              <div class="win-divider"></div>
+              <ul class="win-pricing-card__features">
+                <li><span class="win-check win-check--gold" aria-hidden="true">&#10003;</span> Unlimited meal plans</li>
+                <li><span class="win-check win-check--gold" aria-hidden="true">&#10003;</span> Smart grocery list</li>
+                <li><span class="win-check win-check--gold" aria-hidden="true">&#10003;</span> Premium recipes</li>
+                <li><span class="win-check win-check--gold" aria-hidden="true">&#10003;</span> Taste profile learning</li>
+                <li><span class="win-check win-check--gold" aria-hidden="true">&#10003;</span> Priority support</li>
+                <li><span class="win-check win-check--gold" aria-hidden="true">&#10003;</span> Family mode (up to 6)</li>
+              </ul>
+              <div class="win-divider"></div>
+              <a href="#waitlist" class="win-btn win-btn--primary win-btn--full">Start Plus Free Trial</a>
+            </div>
+
+          </div>
+        </div>
+        <div class="win-statusbar" aria-hidden="true">
+          <span class="win-statusbar__item">2 plans available</span>
+          <span class="win-statusbar__item win-statusbar__item--right">Secure</span>
         </div>
       </div>
+    </section>
+
+  </div><!-- end .win-desktop -->
+
+  <!-- ===== WIN2K FOOTER TASKBAR ===== -->
+  <footer class="win-footer" role="contentinfo">
+    <div class="win-footer__inner">
+      <div class="win-footer__logo" aria-label="Mealody">
+        <svg width="20" height="26" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <ellipse cx="16" cy="8" rx="8" ry="7" fill="#ECE9D8" opacity="0.85"/>
+          <rect x="14.5" y="14" width="3" height="18" rx="1.5" fill="#ECE9D8" opacity="0.85"/>
+          <path d="M16 32 Q8 36 10 39 Q14 42 18 38" stroke="#ECE9D8" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.85"/>
+          <circle cx="10" cy="39" r="2.5" fill="#ECE9D8" opacity="0.85"/>
+        </svg>
+        <span>Mealody</span>
+      </div>
+      <nav class="win-footer__nav" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <span aria-hidden="true">|</span>
+        <a href="about.html">About</a>
+        <span aria-hidden="true">|</span>
+        <a href="how-it-works.html">How It Works</a>
+        <span aria-hidden="true">|</span>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <p class="win-footer__copy">&copy; 2026 Mealody. All rights reserved. &nbsp;|&nbsp; Your meals, your melody.</p>
     </div>
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    // Live clock
+    function updateClock() {
+      const el = document.getElementById('win-clock');
+      if (!el) return;
+      const now = new Date();
+      let h = now.getHours(), m = now.getMinutes();
+      const ampm = h >= 12 ? 'PM' : 'AM';
+      h = h % 12 || 12;
+      el.textContent = h + ':' + String(m).padStart(2, '0') + ' ' + ampm;
+    }
+    updateClock();
+    setInterval(updateClock, 10000);
+  </script>
 </body>
 </html>
